@@ -10,10 +10,10 @@ namespace SistemaGestionData
 {
     public class SistemaGestionContext : DbContext
     {
-        public DbSet<Usuario> Usuarios { get; set; }
-        public DbSet<Producto> Productos { get; set; }
-        public DbSet<ProductoVendido> ProductosVendidos { get; set; }
-        public DbSet<Venta> Ventas { get; set; }
+        public DbSet<Usuario> Usuario { get; set; }
+        public DbSet<Producto> Producto { get; set; }
+        public DbSet<ProductoVendido> ProductoVendido { get; set; }
+        public DbSet<Venta> Venta { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer(

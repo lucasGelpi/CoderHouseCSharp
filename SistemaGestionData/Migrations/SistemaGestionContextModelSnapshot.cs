@@ -16,7 +16,7 @@ namespace SistemaGestionData.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.11")
+                .HasAnnotation("ProductVersion", "7.0.12")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -36,8 +36,9 @@ namespace SistemaGestionData.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("IdUsuario")
-                        .HasColumnType("int");
+                    b.Property<string>("IdUsuario")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("PrecioVenta")
                         .HasColumnType("decimal(18,2)");
@@ -47,7 +48,7 @@ namespace SistemaGestionData.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Productos");
+                    b.ToTable("Producto");
                 });
 
             modelBuilder.Entity("SistemaGestionEntities.ProductoVendido", b =>
@@ -69,7 +70,7 @@ namespace SistemaGestionData.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("ProductosVendidos");
+                    b.ToTable("ProductoVendido");
                 });
 
             modelBuilder.Entity("SistemaGestionEntities.Usuario", b =>
@@ -102,7 +103,7 @@ namespace SistemaGestionData.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Usuarios");
+                    b.ToTable("Usuario");
                 });
 
             modelBuilder.Entity("SistemaGestionEntities.Venta", b =>
@@ -117,12 +118,13 @@ namespace SistemaGestionData.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("IdUsuario")
-                        .HasColumnType("int");
+                    b.Property<string>("IdUsuario")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Ventas");
+                    b.ToTable("Venta");
                 });
 #pragma warning restore 612, 618
         }

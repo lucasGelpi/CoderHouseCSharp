@@ -12,25 +12,31 @@ using System.Windows.Forms;
 
 namespace SistemaGestionUI
 {
-    public partial class frmAltaProducto : Form
+    public partial class frmCrearProducto : Form
     {
-        public frmAltaProducto()
+        public frmCrearProducto()
         {
             InitializeComponent();
         }
 
         private void btnModificar_Click(object sender, EventArgs e)
         {
-            Producto producto = new Producto();
+            using (var context = new SistemaGestionContext())
+            {
 
-            producto.Descripciones = txtDescripciones.Text;
-            producto.Costo = numCosto.Value;
-            producto.PrecioVenta = numPrecio.Value;
-            producto.Stock = (int)numStock.Value;
-            producto.IdUsuario = int.Parse(txtUsuario.Text);
+                var producto = new Producto
+                {
+                    Descripciones = txtDescripciones.Text,
+                    Costo = numCosto.Value,
+                    PrecioVenta = numPrecio.Value,
+                    Stock = (int)numStock.Value,
+                    IdUsuario = txtUsuario.Text,
+            };
 
-            ProductoData.CrearProducto(producto);
-            MessageBox.Show("Se grabo Correctamente");
+                context.Producto.Add(producto);
+                context.SaveChanges();
+                MessageBox.Show("Se grabo Correctamente");
+            }
 
         }
 

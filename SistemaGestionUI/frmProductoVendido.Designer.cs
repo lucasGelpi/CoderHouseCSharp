@@ -1,14 +1,14 @@
 ﻿namespace SistemaGestionUI
 {
-    partial class frmProductos
+    partial class frmProductoVendido
     {
         /// <summary>
-        ///  Required designer variable.
+        /// Required designer variable.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
         /// <summary>
-        ///  Clean up any resources being used.
+        /// Clean up any resources being used.
         /// </summary>
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
@@ -23,24 +23,23 @@
         #region Windows Form Designer generated code
 
         /// <summary>
-        ///  Required method for Designer support - do not modify
-        ///  the contents of this method with the code editor.
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
             dataGridView1 = new DataGridView();
+            productoVendidoBindingSource = new BindingSource(components);
             btnCrear = new Button();
-            productoBindingSource = new BindingSource(components);
-            Id = new DataGridViewTextBoxColumn();
-            Descripciones = new DataGridViewTextBoxColumn();
-            Costo = new DataGridViewTextBoxColumn();
-            PrecioVenta = new DataGridViewTextBoxColumn();
-            Stock = new DataGridViewTextBoxColumn();
             btnEditar = new DataGridViewButtonColumn();
             btnEliminar = new DataGridViewButtonColumn();
+            Id = new DataGridViewTextBoxColumn();
+            IdProducto = new DataGridViewTextBoxColumn();
+            CantidadVendida = new DataGridViewTextBoxColumn();
+            IdVenta = new DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)productoBindingSource).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)productoVendidoBindingSource).BeginInit();
             SuspendLayout();
             // 
             // dataGridView1
@@ -48,63 +47,28 @@
             dataGridView1.AllowUserToAddRows = false;
             dataGridView1.AllowUserToDeleteRows = false;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { Id, Descripciones, Costo, PrecioVenta, Stock, btnEditar, btnEliminar });
-            dataGridView1.Location = new Point(29, 81);
+            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { btnEditar, btnEliminar, Id, IdProducto, CantidadVendida, IdVenta });
+            dataGridView1.Location = new Point(12, 81);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.ReadOnly = true;
             dataGridView1.RowTemplate.Height = 25;
-            dataGridView1.Size = new Size(740, 357);
-            dataGridView1.TabIndex = 0;
+            dataGridView1.Size = new Size(776, 357);
+            dataGridView1.TabIndex = 1;
             dataGridView1.CellContentClick += dataGridView1_CellContentClick;
+            // 
+            // productoVendidoBindingSource
+            // 
+            productoVendidoBindingSource.DataSource = typeof(SistemaGestionEntities.ProductoVendido);
             // 
             // btnCrear
             // 
-            btnCrear.Location = new Point(646, 26);
+            btnCrear.Location = new Point(713, 28);
             btnCrear.Name = "btnCrear";
             btnCrear.Size = new Size(75, 23);
-            btnCrear.TabIndex = 1;
+            btnCrear.TabIndex = 2;
             btnCrear.Text = "Crear";
             btnCrear.UseVisualStyleBackColor = true;
-            btnCrear.Click += btnCrear_Click;
-            // 
-            // productoBindingSource
-            // 
-            productoBindingSource.DataSource = typeof(SistemaGestionEntities.Producto);
-            // 
-            // Id
-            // 
-            Id.DataPropertyName = "Id";
-            Id.HeaderText = "Id";
-            Id.Name = "Id";
-            Id.ReadOnly = true;
-            // 
-            // Descripciones
-            // 
-            Descripciones.DataPropertyName = "Descripciones";
-            Descripciones.HeaderText = "Descripciones";
-            Descripciones.Name = "Descripciones";
-            Descripciones.ReadOnly = true;
-            // 
-            // Costo
-            // 
-            Costo.DataPropertyName = "Costo";
-            Costo.HeaderText = "Costo";
-            Costo.Name = "Costo";
-            Costo.ReadOnly = true;
-            // 
-            // PrecioVenta
-            // 
-            PrecioVenta.DataPropertyName = "PrecioVenta";
-            PrecioVenta.HeaderText = "PrecioVenta";
-            PrecioVenta.Name = "PrecioVenta";
-            PrecioVenta.ReadOnly = true;
-            // 
-            // Stock
-            // 
-            Stock.DataPropertyName = "Stock";
-            Stock.HeaderText = "Stock";
-            Stock.Name = "Stock";
-            Stock.ReadOnly = true;
+            btnCrear.Click += btnCrear_Click_1;
             // 
             // btnEditar
             // 
@@ -126,19 +90,46 @@
             btnEliminar.Text = "Eliminar";
             btnEliminar.UseColumnTextForButtonValue = true;
             // 
-            // frmProductos
+            // Id
+            // 
+            Id.DataPropertyName = "Id";
+            Id.HeaderText = "Id";
+            Id.Name = "Id";
+            Id.ReadOnly = true;
+            // 
+            // IdProducto
+            // 
+            IdProducto.DataPropertyName = "IdProducto";
+            IdProducto.HeaderText = "IdProducto";
+            IdProducto.Name = "IdProducto";
+            IdProducto.ReadOnly = true;
+            // 
+            // CantidadVendida
+            // 
+            CantidadVendida.DataPropertyName = "CantidadVendida";
+            CantidadVendida.HeaderText = "CantidadVendida";
+            CantidadVendida.Name = "CantidadVendida";
+            CantidadVendida.ReadOnly = true;
+            // 
+            // IdVenta
+            // 
+            IdVenta.DataPropertyName = "IdVenta";
+            IdVenta.HeaderText = "IdVenta";
+            IdVenta.Name = "IdVenta";
+            IdVenta.ReadOnly = true;
+            // 
+            // frmProductoVendido
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.Black;
+            BackColor = SystemColors.ActiveCaptionText;
             ClientSize = new Size(800, 450);
             Controls.Add(btnCrear);
             Controls.Add(dataGridView1);
-            Name = "frmProductos";
-            Text = "Productos";
-            Load += Form1_Load;
+            Name = "frmProductoVendido";
+            Text = "frmProductoVendido";
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)productoBindingSource).EndInit();
+            ((System.ComponentModel.ISupportInitialize)productoVendidoBindingSource).EndInit();
             ResumeLayout(false);
         }
 
@@ -146,13 +137,12 @@
 
         private DataGridView dataGridView1;
         private Button btnCrear;
-        private BindingSource productoBindingSource;
-        private DataGridViewTextBoxColumn Id;
-        private DataGridViewTextBoxColumn Descripciones;
-        private DataGridViewTextBoxColumn Costo;
-        private DataGridViewTextBoxColumn PrecioVenta;
-        private DataGridViewTextBoxColumn Stock;
+        private BindingSource productoVendidoBindingSource;
         private DataGridViewButtonColumn btnEditar;
         private DataGridViewButtonColumn btnEliminar;
+        private DataGridViewTextBoxColumn Id;
+        private DataGridViewTextBoxColumn IdProducto;
+        private DataGridViewTextBoxColumn CantidadVendida;
+        private DataGridViewTextBoxColumn IdVenta;
     }
 }

@@ -6,35 +6,35 @@ using System.Windows.Forms;
 
 namespace SistemaGestionUI
 {
-    public partial class frmProductos : Form
+    public partial class frmVentas : Form
     {
-        public frmProductos()
+        public frmVentas()
         {
             InitializeComponent();
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            CargarProductos();
+            CargarVentas();
         }
 
-        private void CargarProductos()
+        private void CargarVentas()
         {
-            List<Producto> lista = ProductoData.ListarProductos();
+            List<Venta> lista = VentaData.ListarVentas();
             dataGridView1.AutoGenerateColumns = false;
             dataGridView1.DataSource = lista;
         }
 
         private void btnCrear_Click(object sender, EventArgs e)
         {
-            frmCrearProducto frmAltaProducto = new frmCrearProducto();
-            frmAltaProducto.FormClosed += FrmAltaProducto_FormClosed;
-            frmAltaProducto.ShowDialog();
+            frmCrearVenta frmAltaVenta = new frmCrearVenta();
+            frmAltaVenta.FormClosed += FrmCrearVenta_FormClosed;
+            frmAltaVenta.ShowDialog();
         }
 
-        private void FrmAltaProducto_FormClosed(object? sender, FormClosedEventArgs e)
+        private void FrmCrearVenta_FormClosed(object? sender, FormClosedEventArgs e)
         {
-            CargarProductos();
+            CargarVentas();
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -42,19 +42,19 @@ namespace SistemaGestionUI
             if (e.RowIndex == -1 || e.ColumnIndex == -1) return;
 
             int Id = (int)this.dataGridView1.Rows[e.RowIndex].Cells["Id"].Value;
-            Producto producto = ProductoData.ListarProductos().Where(x => x.Id == Id).FirstOrDefault();
+            Venta venta = VentaData.ListarVentas().Where(x => x.Id == Id).FirstOrDefault();
 
 
             if (this.dataGridView1.Columns[e.ColumnIndex].Name == "btnEditar")
             {
-                frmModificarProducto modificar = new frmModificarProducto(producto);
-                modificar.FormClosed += FrmAltaProducto_FormClosed;
+                frmModificarVenta modificar = new frmModificarVenta(venta);
+                modificar.FormClosed += FrmCrearVenta_FormClosed;
                 modificar.ShowDialog();
             }
             else if (this.dataGridView1.Columns[e.ColumnIndex].Name == "btnEliminar")
             {
-                frmEliminarProducto eliminar = new frmEliminarProducto(producto);
-                eliminar.FormClosed += FrmAltaProducto_FormClosed;
+                frmEliminarVenta eliminar = new frmEliminarVenta(venta);
+                eliminar.FormClosed += FrmCrearVenta_FormClosed;
                 eliminar.ShowDialog();
             }
         }

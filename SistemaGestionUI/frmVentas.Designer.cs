@@ -1,6 +1,6 @@
 ﻿namespace SistemaGestionUI
 {
-    partial class frmProductos
+    partial class frmVentas
     {
         /// <summary>
         ///  Required designer variable.
@@ -30,17 +30,19 @@
         {
             components = new System.ComponentModel.Container();
             dataGridView1 = new DataGridView();
-            btnCrear = new Button();
-            productoBindingSource = new BindingSource(components);
             Id = new DataGridViewTextBoxColumn();
-            Descripciones = new DataGridViewTextBoxColumn();
-            Costo = new DataGridViewTextBoxColumn();
-            PrecioVenta = new DataGridViewTextBoxColumn();
-            Stock = new DataGridViewTextBoxColumn();
+            Comentarios = new DataGridViewTextBoxColumn();
+            IdUsuario = new DataGridViewTextBoxColumn();
             btnEditar = new DataGridViewButtonColumn();
             btnEliminar = new DataGridViewButtonColumn();
+            ventaBindingSource = new BindingSource(components);
+            btnCrear = new Button();
+            ventaBindingSource1 = new BindingSource(components);
+            ventaBindingSource2 = new BindingSource(components);
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)productoBindingSource).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)ventaBindingSource).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)ventaBindingSource1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)ventaBindingSource2).BeginInit();
             SuspendLayout();
             // 
             // dataGridView1
@@ -48,28 +50,14 @@
             dataGridView1.AllowUserToAddRows = false;
             dataGridView1.AllowUserToDeleteRows = false;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { Id, Descripciones, Costo, PrecioVenta, Stock, btnEditar, btnEliminar });
-            dataGridView1.Location = new Point(29, 81);
+            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { Id, Comentarios, IdUsuario, btnEditar, btnEliminar });
+            dataGridView1.Location = new Point(12, 81);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.ReadOnly = true;
             dataGridView1.RowTemplate.Height = 25;
-            dataGridView1.Size = new Size(740, 357);
+            dataGridView1.Size = new Size(776, 357);
             dataGridView1.TabIndex = 0;
             dataGridView1.CellContentClick += dataGridView1_CellContentClick;
-            // 
-            // btnCrear
-            // 
-            btnCrear.Location = new Point(646, 26);
-            btnCrear.Name = "btnCrear";
-            btnCrear.Size = new Size(75, 23);
-            btnCrear.TabIndex = 1;
-            btnCrear.Text = "Crear";
-            btnCrear.UseVisualStyleBackColor = true;
-            btnCrear.Click += btnCrear_Click;
-            // 
-            // productoBindingSource
-            // 
-            productoBindingSource.DataSource = typeof(SistemaGestionEntities.Producto);
             // 
             // Id
             // 
@@ -78,33 +66,19 @@
             Id.Name = "Id";
             Id.ReadOnly = true;
             // 
-            // Descripciones
+            // Comentarios
             // 
-            Descripciones.DataPropertyName = "Descripciones";
-            Descripciones.HeaderText = "Descripciones";
-            Descripciones.Name = "Descripciones";
-            Descripciones.ReadOnly = true;
+            Comentarios.DataPropertyName = "Comentarios";
+            Comentarios.HeaderText = "Comentarios";
+            Comentarios.Name = "Comentarios";
+            Comentarios.ReadOnly = true;
             // 
-            // Costo
+            // IdUsuario
             // 
-            Costo.DataPropertyName = "Costo";
-            Costo.HeaderText = "Costo";
-            Costo.Name = "Costo";
-            Costo.ReadOnly = true;
-            // 
-            // PrecioVenta
-            // 
-            PrecioVenta.DataPropertyName = "PrecioVenta";
-            PrecioVenta.HeaderText = "PrecioVenta";
-            PrecioVenta.Name = "PrecioVenta";
-            PrecioVenta.ReadOnly = true;
-            // 
-            // Stock
-            // 
-            Stock.DataPropertyName = "Stock";
-            Stock.HeaderText = "Stock";
-            Stock.Name = "Stock";
-            Stock.ReadOnly = true;
+            IdUsuario.DataPropertyName = "IdUsuario";
+            IdUsuario.HeaderText = "IdUsuario";
+            IdUsuario.Name = "IdUsuario";
+            IdUsuario.ReadOnly = true;
             // 
             // btnEditar
             // 
@@ -126,7 +100,29 @@
             btnEliminar.Text = "Eliminar";
             btnEliminar.UseColumnTextForButtonValue = true;
             // 
-            // frmProductos
+            // ventaBindingSource
+            // 
+            ventaBindingSource.DataSource = typeof(SistemaGestionEntities.Venta);
+            // 
+            // btnCrear
+            // 
+            btnCrear.Location = new Point(694, 23);
+            btnCrear.Name = "btnCrear";
+            btnCrear.Size = new Size(75, 23);
+            btnCrear.TabIndex = 1;
+            btnCrear.Text = "Crear";
+            btnCrear.UseVisualStyleBackColor = true;
+            btnCrear.Click += btnCrear_Click;
+            // 
+            // ventaBindingSource1
+            // 
+            ventaBindingSource1.DataSource = typeof(SistemaGestionEntities.Venta);
+            // 
+            // ventaBindingSource2
+            // 
+            ventaBindingSource2.DataSource = typeof(SistemaGestionEntities.Venta);
+            // 
+            // frmVentas
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -134,11 +130,13 @@
             ClientSize = new Size(800, 450);
             Controls.Add(btnCrear);
             Controls.Add(dataGridView1);
-            Name = "frmProductos";
-            Text = "Productos";
+            Name = "frmVentas";
+            Text = "Ventas";
             Load += Form1_Load;
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)productoBindingSource).EndInit();
+            ((System.ComponentModel.ISupportInitialize)ventaBindingSource).EndInit();
+            ((System.ComponentModel.ISupportInitialize)ventaBindingSource1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)ventaBindingSource2).EndInit();
             ResumeLayout(false);
         }
 
@@ -146,13 +144,13 @@
 
         private DataGridView dataGridView1;
         private Button btnCrear;
-        private BindingSource productoBindingSource;
+        private BindingSource ventaBindingSource;
         private DataGridViewTextBoxColumn Id;
-        private DataGridViewTextBoxColumn Descripciones;
-        private DataGridViewTextBoxColumn Costo;
-        private DataGridViewTextBoxColumn PrecioVenta;
-        private DataGridViewTextBoxColumn Stock;
+        private DataGridViewTextBoxColumn Comentarios;
+        private DataGridViewTextBoxColumn IdUsuario;
         private DataGridViewButtonColumn btnEditar;
         private DataGridViewButtonColumn btnEliminar;
+        private BindingSource ventaBindingSource1;
+        private BindingSource ventaBindingSource2;
     }
 }

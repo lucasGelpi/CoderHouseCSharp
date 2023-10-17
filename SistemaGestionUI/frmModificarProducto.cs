@@ -12,21 +12,19 @@ using System.Windows.Forms;
 
 namespace SistemaGestionUI
 {
-    public partial class frmMdificarProducto : Form
+    public partial class frmModificarProducto : Form
     {
-        public frmMdificarProducto()
+        public frmModificarProducto(int codigo)
         {
             InitializeComponent();
         }
 
         private Producto _producto;
-        public frmMdificarProducto(Producto producto)
+        public frmModificarProducto(Producto producto)
         {
             InitializeComponent();
             _producto = producto;
         }
-
-
 
         private void btnModificar_Click(object sender, EventArgs e)
         {
@@ -34,7 +32,7 @@ namespace SistemaGestionUI
             _producto.Costo = numCosto.Value;
             _producto.PrecioVenta = numPrecio.Value;
             _producto.Stock = (int)numStock.Value;
-            _producto.IdUsuario = int.Parse(txtUsuario.Text);
+            _producto.IdUsuario = txtUsuario.Text;
 
             ProductoData.ModificarProducto(_producto);
             MessageBox.Show("Se grabo Correctamente");
@@ -47,6 +45,21 @@ namespace SistemaGestionUI
             this.numCosto.Value = _producto.Costo;
             this.numPrecio.Value = _producto.PrecioVenta;
             this.numStock.Value = _producto.Stock;
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtUsuario_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtDescripciones_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -3,6 +3,7 @@ using SistemaGestionEntities;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,143 +12,205 @@ namespace SistemaGestionData
 {
     public static class ProductoData
     {
-        public static List<Producto> ObtenerProducto(int IdProducto)
-        {
-            List<Producto> lista = new List<Producto>();
-            string connectionString = @"Server=(localdb)\mssqllocaldb;Database=SistemaGestion;Trusted_Connection=True;";
-            var query = "SELECT Id, Descripciones, Costo, PrecioVenta, Stock, IdUsuario FROM Productos Where Id=@IdProducto;";
-
-            using(SqlConnection conexion = new SqlConnection(connectionString)) 
-            {
-                conexion.Open();
-                using (SqlCommand comando = new SqlCommand(query, conexion)) 
-                {
-                    var parametro = new SqlParameter();
-                    parametro.ParameterName = "IdProducto";
-                    parametro.SqlDbType = SqlDbType.Int;
-                    parametro.Value = IdProducto;
-
-                    comando.Parameters.Add(parametro);
-
-                    using (SqlDataReader dr = comando.ExecuteReader())
-                    {
-                        if (dr.HasRows)
-                        {
-                            while (dr.Read())
-                            {
-                                var producto = new Producto();
-                                producto.Id = Convert.ToInt32(dr["id"]);
-                                producto.Descripciones = dr["Descripciones"].ToString();
-                                producto.Costo = Convert.ToDecimal(dr["Costo"]);
-                                producto.PrecioVenta = Convert.ToDecimal(dr["PrecioVenta"]);
-                                producto.Stock = Convert.ToInt32(dr["Stock"]);
-                                producto.IdUsuario = Convert.ToInt32(dr["IdUsuario"]);
-                                lista.Add(producto);
-                            }
-                        }
-                    }
-                }
-            }
-
-            return lista;
-        }
-
+        #region Productos
         public static List<Producto> ListarProductos()
         {
             List<Producto> lista = new List<Producto>();
-            string connectionString = @"Server=(localdb)\mssqllocaldb;Database=SistemaGestion;Trusted_Connection=True;";
-            var query = "SELECT Id, Descripciones, Costo, PrecioVenta, Stock, IdUsuario FROM Productos;";
+            // Importante: Para que funcione
+            // Modifica el parametro Server por el de tu Servidor
+            string connectionString = @"Server=(localdb)\mssqllocaldb;Database=SistemaGestion;Trusted_Connection=True";
+            string query = "SELECT Id,Descripciones,Costo,PrecioVenta,Stock,IdUsuario FROM Producto";
 
-            using (SqlConnection conexion = new SqlConnection(connectionString))
+            try
             {
-                conexion.Open();
-                using (SqlCommand comando = new SqlCommand(query, conexion))
+                using (SqlConnection conexion = new SqlConnection(connectionString))
                 {
-                    using (SqlDataReader dr = comando.ExecuteReader())
+                    conexion.Open();
+
+                    using (SqlCommand comando = new SqlCommand(query, conexion))
                     {
-                        if (dr.HasRows)
+                        using (SqlDataReader dr = comando.ExecuteReader())
                         {
-                            while (dr.Read())
+                            if (dr.HasRows)
                             {
-                                var producto = new Producto();
-                                producto.Id = Convert.ToInt32(dr["id"]);
-                                producto.Descripciones = dr["Descripciones"].ToString();
-                                producto.Costo = Convert.ToDecimal(dr["Costo"]);
-                                producto.PrecioVenta = Convert.ToDecimal(dr["PrecioVenta"]);
-                                producto.Stock = Convert.ToInt32(dr["Stock"]);
-                                producto.IdUsuario = Convert.ToInt32(dr["IdUsuario"]);
-                                lista.Add(producto);
+                                while (dr.Read())
+                                {
+                                    var producto = new Producto();
+                                    producto.Id = Convert.ToInt32(dr["Id"]);
+                                    producto.Descripciones = dr["Descripciones"].ToString();
+                                    producto.Costo = Convert.ToDecimal(dr["Costo"]);
+                                    producto.PrecioVenta = Convert.ToDecimal(dr["PrecioVenta"]);
+                                    producto.Stock = Convert.ToInt32(dr["Stock"]);
+                                    producto.IdUsuario = dr["IdUsuario"].ToString();
+
+                                    lista.Add(producto);
+                                }
                             }
                         }
                     }
+
+                    // Opcional
+                    conexion.Close();
                 }
+                return lista;
             }
-
-            return lista;
+            catch (Exception ex)
+            {
+                return null;
+            }
         }
+        public static Producto ObtenerProducto(int id)
+        {
+            Producto producto = new Producto();
+            // Importante: Para que funcione
+            // Modifica el parametro Server por el de tu Servidor
+            string connectionString = @"Server=(localdb)\mssqllocaldb;Database=SistemaGestion;
+                                        Trusted_Connection=True";
+            string query = "SELECT Id,Descripciones,Costo,PrecioVenta,Stock,IdUsuario FROM Producto Where Id=@Id";
 
+            try
+            {
+                using (SqlConnection conexion = new SqlConnection(connectionString))
+                {
+                    conexion.Open();
+
+                    using (SqlCommand comando = new SqlCommand(query, conexion))
+                    {
+                        comando.Parameters.Add(new SqlParameter("Id", SqlDbType.Int) { Value = id });
+
+
+                        using (SqlDataReader dr = comando.ExecuteReader())
+                        {
+                            if (dr.HasRows)
+                            {
+                                while (dr.Read())
+                                {
+                                    producto.Id = Convert.ToInt32(dr["Id"]);
+                                    producto.Descripciones = dr["Descripciones"].ToString();
+                                    producto.Costo = Convert.ToDecimal(dr["Costo"]);
+                                    producto.PrecioVenta = Convert.ToDecimal(dr["PrecioVenta"]);
+                                    producto.Stock = Convert.ToInt32(dr["Stock"]);
+                                    producto.IdUsuario = dr["IdUsuario"].ToString();
+                                }
+                            }
+                        }
+                    }
+
+                    // Opcional
+                    conexion.Close();
+                }
+                return producto;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
         public static void CrearProducto(Producto producto)
         {
-            string connectionString = @"Server=(localdb)\mssqllocaldb;Database=SistemaGestion;Trusted_Connection=True;";
-            var query = "INSERT INTO Productos (Descripciones, Costo, PrecioVenta, Stock, IdUsuario)" +
-                "VALUES (@Descripciones, @Costo, @PrecioVenta, @Stock, @IdUsuario)";
+            string connectionString = @"Server=(localdb)\mssqllocaldb;Database=SistemaGestion;
+                                        Trusted_Connection=True";
+            string query = "INSERT INTO Producto (Descripciones,Costo, PrecioVenta,Stock, IdUsuario)" +
+                " VALUES(@Descripcion, @Costo, @PrecioVenta, @Stock, @IdUsuario); ";
 
-            using (SqlConnection conexion = new SqlConnection(connectionString))
+            try
             {
-                conexion.Open();
-                using (SqlCommand comando = new SqlCommand(query, conexion))
+                using (SqlConnection conexion = new SqlConnection(connectionString))
                 {
-                    comando.Parameters.Add(new SqlParameter("Descripciones", SqlDbType.VarChar) { Value = producto.Descripciones });
-                    comando.Parameters.Add(new SqlParameter("Costo", SqlDbType.Money) { Value = producto.Costo });
-                    comando.Parameters.Add(new SqlParameter("PrecioVenta", SqlDbType.Money) { Value = producto.PrecioVenta });
-                    comando.Parameters.Add(new SqlParameter("Stock", SqlDbType.Int) { Value = producto.Stock });
-                    comando.Parameters.Add(new SqlParameter("IdUsuario", SqlDbType.Int) { Value = producto.IdUsuario });
+                    conexion.Open();
+                    using (SqlCommand comando = new SqlCommand(query, conexion))
+                    {
+                        // se puede determinar si es Procedimiento Tabla o consulta
+                        // comando.CommandType = CommandType.TableDirect;
+
+                        comando.Parameters.Add(new SqlParameter("Descripcion", SqlDbType.VarChar) { Value = producto.Descripciones });
+                        comando.Parameters.Add(new SqlParameter("Costo", SqlDbType.Decimal) { Value = producto.Costo });
+                        comando.Parameters.Add(new SqlParameter("PrecioVenta", SqlDbType.Decimal) { Value = producto.PrecioVenta });
+                        comando.Parameters.Add(new SqlParameter("Stock", SqlDbType.Decimal) { Value = producto.Stock });
+                        comando.Parameters.Add(new SqlParameter("IdUsuario", SqlDbType.BigInt) { Value = producto.IdUsuario });
+
+                        comando.ExecuteNonQuery();
+                    }
+                    conexion.Close();
                 }
-                conexion.Close();
+            }
+            catch (Exception ex)
+            {
+                throw;
             }
         }
 
         public static void ModificarProducto(Producto producto)
         {
-            string connectionString = @"Server=(localdb)\mssqllocaldb;Database=SistemaGestion;Trusted_Connection=True;";
-            var query = "UPDATE Productos" + 
-                        "SET Descripciones = @Descripciones" + 
-                        ", Costo = @Costo" + 
-                        ", PrecioVenta = @PrecioVenta" + 
-                        ", Stock = @Stock" + 
-                        ", IdUsuario = @IdUsuario" + 
-                        "WHERE Id = @Id";
-
-            using (SqlConnection conexion = new SqlConnection(connectionString))
+            string connectionString = @"Server=(localdb)\mssqllocaldb;Database=SistemaGestion;Trusted_Connection=True";
+            string query = "UPDATE Producto " +
+                "SET Descripciones = @Descripcion ,Costo = @Costo, PrecioVenta = @PrecioVenta,Stock = @Stock, IdUsuario=@IdUsuario " +
+                " WHERE Id = @Id";
+            try
             {
-                conexion.Open();
-                using (SqlCommand comando = new SqlCommand(query, conexion))
+                using (SqlConnection conexion = new SqlConnection(connectionString))
                 {
-                    comando.Parameters.Add(new SqlParameter("Id", SqlDbType.Int) { Value = producto.Id });
-                    comando.Parameters.Add(new SqlParameter("Descripciones", SqlDbType.VarChar) { Value = producto.Descripciones });
-                    comando.Parameters.Add(new SqlParameter("Costo", SqlDbType.Money) { Value = producto.Costo });
-                    comando.Parameters.Add(new SqlParameter("PrecioVenta", SqlDbType.Money) { Value = producto.PrecioVenta });
-                    comando.Parameters.Add(new SqlParameter("Stock", SqlDbType.Int) { Value = producto.Stock });
-                    comando.Parameters.Add(new SqlParameter("IdUsuario", SqlDbType.Int) { Value = producto.IdUsuario });
+                    conexion.Open();
+                    using (SqlCommand comando = new SqlCommand(query, conexion))
+                    {
+                        comando.Parameters.Add(new SqlParameter("Id", SqlDbType.VarChar) { Value = producto.Id });
+                        comando.Parameters.Add(new SqlParameter("Descripcion", SqlDbType.VarChar) { Value = producto.Descripciones });
+                        comando.Parameters.Add(new SqlParameter("Costo", SqlDbType.Decimal) { Value = producto.Costo });
+                        comando.Parameters.Add(new SqlParameter("PrecioVenta", SqlDbType.Decimal) { Value = producto.PrecioVenta });
+                        comando.Parameters.Add(new SqlParameter("Stock", SqlDbType.Decimal) { Value = producto.Stock });
+                        comando.Parameters.Add(new SqlParameter("IdUsuario", SqlDbType.BigInt) { Value = producto.IdUsuario });
+                        comando.ExecuteNonQuery();
+                    }
+                    conexion.Close();
                 }
-                conexion.Close();
+
+            }
+            catch (Exception ex)
+            {
+                throw;
             }
         }
 
         public static void EliminarProducto(Producto producto)
         {
-            string connectionString = @"Server=(localdb)\mssqllocaldb;Database=SistemaGestion;Trusted_Connection=True;";
-            var query = "DELETE FROM Productos WHERE Id = @Id";
-
-            using (SqlConnection conexion = new SqlConnection(connectionString))
+            string connectionString = @"Server=(localdb)\mssqllocaldb;Database=SistemaGestion;
+                                        Trusted_Connection=True";
+            string query = "DELETE FROM Producto " +
+                " WHERE Id = @Id";
+            try
             {
-                conexion.Open();
-                using (SqlCommand comando = new SqlCommand(query, conexion))
+                using (SqlConnection conexion = new SqlConnection(connectionString))
                 {
-                    comando.Parameters.Add(new SqlParameter("Id", SqlDbType.Int) { Value = producto.Id });
+                    conexion.Open();
+                    using (SqlCommand comando = new SqlCommand(query, conexion))
+                    {
+                        comando.Parameters.Add(new SqlParameter("Id", SqlDbType.VarChar) { Value = producto.Id });
+
+                        comando.ExecuteNonQuery();
+                    }
+                    conexion.Close();
                 }
-                conexion.Close();
+
+            }
+            catch (Exception ex)
+            {
+
+                throw;
             }
         }
+        #endregion
+
+        #region Usuario
+        #endregion
+
+        #region Venta
+        #endregion
+
+        #region ProductoVendido
+        #endregion
+
     }
+
+
+
 }

@@ -1,6 +1,6 @@
 ﻿namespace SistemaGestionUI
 {
-    partial class frmAltaProducto
+    partial class frmCrearProducto
     {
         /// <summary>
         /// Required designer variable.

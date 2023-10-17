@@ -1,6 +1,6 @@
 ﻿namespace SistemaGestionUI
 {
-    partial class frmMdificarProducto
+    partial class frmModificarProducto
     {
         /// <summary>
         /// Required designer variable.
@@ -48,21 +48,21 @@
             // 
             numStock.DecimalPlaces = 2;
             numStock.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            numStock.Location = new Point(244, 274);
+            numStock.Location = new Point(244, 276);
             numStock.Maximum = new decimal(new int[] { 999999999, 0, 0, 0 });
             numStock.Name = "numStock";
             numStock.Size = new Size(151, 29);
-            numStock.TabIndex = 47;
+            numStock.TabIndex = 36;
             // 
             // label1
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             label1.ForeColor = Color.White;
-            label1.Location = new Point(244, 250);
+            label1.Location = new Point(244, 252);
             label1.Name = "label1";
             label1.Size = new Size(52, 21);
-            label1.TabIndex = 46;
+            label1.TabIndex = 35;
             label1.Text = "Stock";
             // 
             // txtUsuario
@@ -71,17 +71,18 @@
             txtUsuario.Location = new Point(245, 346);
             txtUsuario.Name = "txtUsuario";
             txtUsuario.Size = new Size(312, 29);
-            txtUsuario.TabIndex = 45;
+            txtUsuario.TabIndex = 34;
+            txtUsuario.TextChanged += txtUsuario_TextChanged;
             // 
             // label6
             // 
             label6.AutoSize = true;
             label6.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             label6.ForeColor = Color.White;
-            label6.Location = new Point(245, 322);
+            label6.Location = new Point(244, 322);
             label6.Name = "label6";
             label6.Size = new Size(88, 21);
-            label6.TabIndex = 44;
+            label6.TabIndex = 33;
             label6.Text = "Id Usuario";
             // 
             // txtDescripciones
@@ -90,17 +91,18 @@
             txtDescripciones.Location = new Point(245, 58);
             txtDescripciones.Name = "txtDescripciones";
             txtDescripciones.Size = new Size(312, 29);
-            txtDescripciones.TabIndex = 43;
+            txtDescripciones.TabIndex = 32;
+            txtDescripciones.TextChanged += txtDescripciones_TextChanged;
             // 
             // numPrecio
             // 
             numPrecio.DecimalPlaces = 2;
             numPrecio.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            numPrecio.Location = new Point(245, 207);
+            numPrecio.Location = new Point(245, 209);
             numPrecio.Maximum = new decimal(new int[] { 999999999, 0, 0, 0 });
             numPrecio.Name = "numPrecio";
             numPrecio.Size = new Size(151, 29);
-            numPrecio.TabIndex = 42;
+            numPrecio.TabIndex = 31;
             // 
             // numCosto
             // 
@@ -110,17 +112,17 @@
             numCosto.Maximum = new decimal(new int[] { 999999999, 0, 0, 0 });
             numCosto.Name = "numCosto";
             numCosto.Size = new Size(151, 29);
-            numCosto.TabIndex = 41;
+            numCosto.TabIndex = 30;
             // 
             // label5
             // 
             label5.AutoSize = true;
             label5.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             label5.ForeColor = Color.White;
-            label5.Location = new Point(245, 183);
+            label5.Location = new Point(245, 185);
             label5.Name = "label5";
             label5.Size = new Size(129, 21);
-            label5.TabIndex = 40;
+            label5.TabIndex = 29;
             label5.Text = "Precio de Venta";
             // 
             // label3
@@ -128,10 +130,10 @@
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             label3.ForeColor = Color.White;
-            label3.Location = new Point(244, 105);
+            label3.Location = new Point(245, 105);
             label3.Name = "label3";
             label3.Size = new Size(128, 21);
-            label3.TabIndex = 39;
+            label3.TabIndex = 28;
             label3.Text = "Precio de Costo";
             // 
             // label2
@@ -142,7 +144,7 @@
             label2.Location = new Point(245, 30);
             label2.Name = "label2";
             label2.Size = new Size(100, 21);
-            label2.TabIndex = 38;
+            label2.TabIndex = 27;
             label2.Text = "Descripción";
             // 
             // btnModificar
@@ -154,12 +156,12 @@
             btnModificar.Location = new Point(314, 381);
             btnModificar.Name = "btnModificar";
             btnModificar.Size = new Size(134, 40);
-            btnModificar.TabIndex = 37;
+            btnModificar.TabIndex = 26;
             btnModificar.Text = "GUARDAR";
             btnModificar.UseVisualStyleBackColor = false;
             btnModificar.Click += btnModificar_Click;
             // 
-            // frmMdificarProducto
+            // frmModificarProducto
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -176,7 +178,7 @@
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(btnModificar);
-            Name = "frmMdificarProducto";
+            Name = "frmModificarProducto";
             Text = "Modificar Producto";
             Load += frmMdificarProducto_Load;
             ((System.ComponentModel.ISupportInitialize)numStock).EndInit();

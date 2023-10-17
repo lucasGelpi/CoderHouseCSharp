@@ -9,6 +9,6 @@
         public decimal Costo { get; set; }
         public decimal PrecioVenta { get; set; }
         public int Stock { get; set; }
-        public int IdUsuario { get; set; }
+        public string IdUsuario { get; set; }
     }
 }

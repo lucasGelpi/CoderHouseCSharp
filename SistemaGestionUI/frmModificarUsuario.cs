@@ -29,7 +29,7 @@ namespace SistemaGestionUI
             var db = new SistemaGestionContext();
 
             // Query
-            this.usuario = db.Usuarios.Where(x => x.Id.Equals(IDUsuario)).SingleOrDefault();
+            this.usuario = db.Usuario.Where(x => x.Id.Equals(IDUsuario)).SingleOrDefault();
             txtNombre.Text = usuario.Nombre;
             txtApellido.Text = usuario.Apellido;
             txtNombreUsuario.Text = usuario.NombreUsuario;
@@ -48,7 +48,7 @@ namespace SistemaGestionUI
             using (var context = new SistemaGestionContext())
             {
 
-                var usuario = context.Usuarios.Where(x => x.Id.Equals(this.usuario.Id)).Single();
+                var usuario = context.Usuario.Where(x => x.Id.Equals(this.usuario.Id)).Single();
                 usuario.Nombre = txtNombre.Text;
                 usuario.Apellido = txtApellido.Text;
                 usuario.NombreUsuario = txtNombreUsuario.Text;

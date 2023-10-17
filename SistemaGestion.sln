@@ -3,13 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33516.290
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SistemaGestionUI", "SistemaGestionUI\SistemaGestionUI.csproj", "{A0F20A91-3BE0-4FCD-B043-8A6A13B59F3D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SistemaGestionUI", "SistemaGestionUI\SistemaGestionUI.csproj", "{A0F20A91-3BE0-4FCD-B043-8A6A13B59F3D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SistemaGestionEntities", "SistemaGestionEntities\SistemaGestionEntities.csproj", "{8C447B7A-120F-4AA8-891D-116C9B9DA832}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SistemaGestionEntities", "SistemaGestionEntities\SistemaGestionEntities.csproj", "{8C447B7A-120F-4AA8-891D-116C9B9DA832}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SistemaGestionData", "SistemaGestionData\SistemaGestionData.csproj", "{77D39511-E184-403B-9E61-440A90097DBC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SistemaGestionData", "SistemaGestionData\SistemaGestionData.csproj", "{77D39511-E184-403B-9E61-440A90097DBC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SistemaGestionBussiness", "SistemaGestionBussiness\SistemaGestionBussiness.csproj", "{739A9BFD-EA3B-4A71-B521-7382FA6F12F9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SistemaGestionBussiness", "SistemaGestionBussiness\SistemaGestionBussiness.csproj", "{739A9BFD-EA3B-4A71-B521-7382FA6F12F9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SistemaGestionWebApi", "UsuariosUserWebApi\SistemaGestionWebApi.csproj", "{83C4023A-8D3F-4DCE-9ACE-11BC76A9184B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{739A9BFD-EA3B-4A71-B521-7382FA6F12F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{739A9BFD-EA3B-4A71-B521-7382FA6F12F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{739A9BFD-EA3B-4A71-B521-7382FA6F12F9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{83C4023A-8D3F-4DCE-9ACE-11BC76A9184B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{83C4023A-8D3F-4DCE-9ACE-11BC76A9184B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{83C4023A-8D3F-4DCE-9ACE-11BC76A9184B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{83C4023A-8D3F-4DCE-9ACE-11BC76A9184B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

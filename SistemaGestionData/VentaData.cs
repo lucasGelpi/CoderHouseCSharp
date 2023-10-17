@@ -16,37 +16,46 @@ namespace SistemaGestionData
             List<Venta> lista = new List<Venta>();
             string connectionString = @"Server=(localdb)\mssqllocaldb;Database=SistemaGestion;Trusted_Connection=True;";
             var query = "SELECT Id, Comentarios, IdUsuario FROM Venta Where Id=@IdVenta;";
-
-            using (SqlConnection conexion = new SqlConnection(connectionString))
+            try
             {
-                conexion.Open();
-                using (SqlCommand comando = new SqlCommand(query, conexion))
+
+                    using (SqlConnection conexion = new SqlConnection(connectionString))
                 {
-                    var parametro = new SqlParameter();
-                    parametro.ParameterName = "IdVenta";
-                    parametro.SqlDbType = SqlDbType.Int;
-                    parametro.Value = IdVenta;
-
-                    comando.Parameters.Add(parametro);
-
-                    using (SqlDataReader dr = comando.ExecuteReader())
+                    conexion.Open();
+                    using (SqlCommand comando = new SqlCommand(query, conexion))
                     {
-                        if (dr.HasRows)
+                        var parametro = new SqlParameter();
+                        parametro.ParameterName = "IdVenta";
+                        parametro.SqlDbType = SqlDbType.Int;
+                        parametro.Value = IdVenta;
+
+                        comando.Parameters.Add(parametro);
+
+                        using (SqlDataReader dr = comando.ExecuteReader())
                         {
-                            while (dr.Read())
+                            if (dr.HasRows)
                             {
-                                var venta = new Venta();
-                                venta.Id = Convert.ToInt32(dr["id"]);
-                                venta.Comentarios = dr["Comentarios"].ToString();
-                                venta.IdUsuario = Convert.ToInt32(dr["IdUsuario"]);
-                                lista.Add(venta);
+                                while (dr.Read())
+                                {
+                                    var venta = new Venta();
+                                    venta.Id = Convert.ToInt32(dr["id"]);
+                                    venta.Comentarios = dr["Comentarios"].ToString();
+                                    venta.IdUsuario = dr["IdUsuario"].ToString();
+                                    lista.Add(venta);
+                                }
                             }
                         }
                     }
-                }
-            }
 
-            return lista;
+                    // Opcional
+                    conexion.Close();
+                }
+                return lista;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
         }
 
         public static List<Venta> ListarVentas()
@@ -54,30 +63,38 @@ namespace SistemaGestionData
             List<Venta> lista = new List<Venta>();
             string connectionString = @"Server=(localdb)\mssqllocaldb;Database=SistemaGestion;Trusted_Connection=True;";
             var query = "SELECT Id, Comentarios, IdUsuario FROM Venta;";
-
-            using (SqlConnection conexion = new SqlConnection(connectionString))
+            try
             {
-                conexion.Open();
-                using (SqlCommand comando = new SqlCommand(query, conexion))
+                    using (SqlConnection conexion = new SqlConnection(connectionString))
                 {
-                    using (SqlDataReader dr = comando.ExecuteReader())
+                    conexion.Open();
+                    using (SqlCommand comando = new SqlCommand(query, conexion))
                     {
-                        if (dr.HasRows)
+                        using (SqlDataReader dr = comando.ExecuteReader())
                         {
-                            while (dr.Read())
+                            if (dr.HasRows)
                             {
-                                var venta = new Venta();
-                                venta.Id = Convert.ToInt32(dr["id"]);
-                                venta.Comentarios = dr["Comentarios"].ToString();
-                                venta.IdUsuario = Convert.ToInt32(dr["IdUsuario"]);
-                                lista.Add(venta);
+                                while (dr.Read())
+                                {
+                                    var venta = new Venta();
+                                    venta.Id = Convert.ToInt32(dr["id"]);
+                                    venta.Comentarios = dr["Comentarios"].ToString();
+                                    venta.IdUsuario = dr["IdUsuario"].ToString();
+                                    lista.Add(venta);
+                                }
                             }
                         }
                     }
-                }
-            }
 
-            return lista;
+                    // Opcional
+                    conexion.Close();
+                }
+                return lista;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
         }
 
         public static void CrearVenta(Venta venta)
@@ -101,38 +118,63 @@ namespace SistemaGestionData
         public static void ModificarVenta(Venta venta)
         {
             string connectionString = @"Server=(localdb)\mssqllocaldb;Database=SistemaGestion;Trusted_Connection=True;";
-            var query = "UPDATE Venta" +
-                        "SET Comentarios = @Comentarios" +
-                        ", IdUsuario = @IdUsuario" +
-                        "WHERE Id = @Id";
-
-            using (SqlConnection conexion = new SqlConnection(connectionString))
+            string query = "UPDATE Venta " +
+                "SET Comentarios = @Comentarios , IdUsuario = @IdUsuario " +
+                " WHERE Id = @Id";
+            try
             {
-                conexion.Open();
-                using (SqlCommand comando = new SqlCommand(query, conexion))
+                using (SqlConnection conexion = new SqlConnection(connectionString))
                 {
-                    comando.Parameters.Add(new SqlParameter("Id", SqlDbType.Int) { Value = venta.Id });
-                    comando.Parameters.Add(new SqlParameter("Comentarios", SqlDbType.VarChar) { Value = venta.Comentarios });
-                    comando.Parameters.Add(new SqlParameter("IdUsuario", SqlDbType.Int) { Value = venta.IdUsuario });
+                    conexion.Open();
+                    using (SqlCommand comando = new SqlCommand(query, conexion))
+                    {
+                        comando.Parameters.Add(new SqlParameter("Id", SqlDbType.Int) { Value = venta.Id });
+                        comando.Parameters.Add(new SqlParameter("Comentarios", SqlDbType.VarChar) { Value = venta.Comentarios });
+                        comando.Parameters.Add(new SqlParameter("IdUsuario", SqlDbType.Int) { Value = venta.IdUsuario });
+                        comando.ExecuteNonQuery();
+                    }
+                    conexion.Close();
                 }
-                conexion.Close();
+
+            }
+            catch (Exception ex)
+            {
+                throw;
             }
         }
 
         public static void EliminarVenta(Venta venta)
         {
-            string connectionString = @"Server=(localdb)\mssqllocaldb;Database=SistemaGestion;Trusted_Connection=True;";
-            var query = "DELETE FROM Venta WHERE Id = @Id";
-
-            using (SqlConnection conexion = new SqlConnection(connectionString))
+            string connectionString = @"Server=(localdb)\mssqllocaldb;Database=SistemaGestion;Trusted_Connection=True";
+            string query = "DELETE FROM Venta " +
+                " WHERE Id = @Id";
+            try
             {
-                conexion.Open();
-                using (SqlCommand comando = new SqlCommand(query, conexion))
+                using (SqlConnection conexion = new SqlConnection(connectionString))
                 {
-                    comando.Parameters.Add(new SqlParameter("Id", SqlDbType.Int) { Value = venta.Id });
+                    conexion.Open();
+                    using (SqlCommand comando = new SqlCommand(query, conexion))
+                    {
+                        comando.Parameters.Add(new SqlParameter("Id", SqlDbType.VarChar) { Value = venta.Id });
+                        comando.ExecuteNonQuery();
+                    }
+                    conexion.Close();
                 }
-                conexion.Close();
+
+            }
+            catch (Exception ex)
+            {
+
+                throw;
             }
         }
+        #region Usuario
+        #endregion
+
+        #region Venta
+        #endregion
+
+        #region ProductoVendido
+        #endregion
     }
 }

@@ -13,4 +13,22 @@
     <ProjectReference Include="..\SistemaGestionEntities\SistemaGestionEntities.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Update="frmEliminarProductoVendido.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="frmCrearVenta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="frmEliminarVenta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="frmModificarProductoVendido.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="frmVentas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+  </ItemGroup>
+
 </Project>

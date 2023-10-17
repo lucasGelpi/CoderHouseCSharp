@@ -12,33 +12,36 @@ using System.Windows.Forms;
 
 namespace SistemaGestionUI
 {
-    public partial class frmCrearUsuario : Form
+    public partial class frmCrearVenta : Form
     {
-        public frmCrearUsuario()
+        public frmCrearVenta()
         {
             InitializeComponent();
         }
 
-        private void btnGuardar_Click(object sender, EventArgs e)
+        private void btnModificar_Click(object sender, EventArgs e)
         {
             using (var context = new SistemaGestionContext())
             {
 
-                var usuario = new Usuario
+                var venta = new Venta
                 {
-                    Nombre = txtNombre.Text,
-                    Apellido = txtApellido.Text,
-                    NombreUsuario = txtNombreUsuario.Text,
-                    Contraseña = txtContraseña.Text,
-                    Mail = txtMail.Text
+                    Comentarios = txtComentarios.Text,
+                    IdUsuario = txtUsuario.Text,
                 };
 
-                context.Usuario.Add(usuario);
+                context.Venta.Add(venta);
                 context.SaveChanges();
+                MessageBox.Show("Se grabo Correctamente");
             }
         }
 
-        private void frmCrearUsuario_Load(object sender, EventArgs e)
+        private void frmAltaVenta_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtComentarios_TextChanged(object sender, EventArgs e)
         {
 
         }

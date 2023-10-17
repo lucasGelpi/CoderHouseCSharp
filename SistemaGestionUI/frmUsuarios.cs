@@ -22,7 +22,7 @@ namespace SistemaGestionUI
             var db = new SistemaGestionContext();
 
             // Query
-            var usuarios = db.Usuarios
+            var usuarios = db.Usuario
                 .OrderBy(b => b.Id)
                 .ToList();
 
@@ -42,7 +42,7 @@ namespace SistemaGestionUI
             var db = new SistemaGestionContext();
 
             // Query
-            var usuarios = db.Usuarios
+            var usuarios = db.Usuario
                 .OrderBy(b => b.Id)
                 .ToList();
 
@@ -73,7 +73,5 @@ namespace SistemaGestionUI
                 frmEliminarUsuario.ShowDialog();
             }
         }
-
-
     }
 }
