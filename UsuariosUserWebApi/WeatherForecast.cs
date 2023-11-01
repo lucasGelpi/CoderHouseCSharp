@@ -1,4 +1,4 @@
-namespace UsuariosUserWebApi
+namespace SistemaGestionWebApi
 {
     public class WeatherForecast
     {
