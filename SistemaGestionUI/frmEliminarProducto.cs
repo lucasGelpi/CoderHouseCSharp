@@ -18,25 +18,24 @@ namespace SistemaGestionUI
         {
             InitializeComponent();
         }
-        private Producto _producto;
+        private Producto producto;
         public frmEliminarProducto(Producto producto)
         {
             InitializeComponent();
-            _producto = producto;
+            this.producto = producto;
         }
         private void frmEliminarProducto_Load(object sender, EventArgs e)
         {
-            this.txtUsuario.Text = _producto.IdUsuario.ToString();
-            this.txtDescripciones.Text = _producto.Descripciones;
-            this.numCosto.Value = _producto.Costo;
-            this.numPrecio.Value = _producto.PrecioVenta;
-            this.numStock.Value = _producto.Stock;
+            this.txtUsuario.Text = producto.IdUsuario.ToString();
+            this.txtDescripciones.Text = producto.Descripciones;
+            this.numCosto.Value = producto.Costo;
+            this.numPrecio.Value = producto.PrecioVenta;
+            this.numStock.Value = producto.Stock;
         }
 
         private void btnModificar_Click(object sender, EventArgs e)
         {
-
-            ProductoData.EliminarProducto(_producto);
+            ProductoData.EliminarProducto(producto.Id);
             MessageBox.Show("Se grabo Correctamente");
         }
     }

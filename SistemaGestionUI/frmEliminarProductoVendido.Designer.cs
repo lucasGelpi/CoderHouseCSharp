@@ -58,6 +58,7 @@
             numIdProducto.Location = new Point(238, 84);
             numIdProducto.Maximum = new decimal(new int[] { 999999999, 0, 0, 0 });
             numIdProducto.Name = "numIdProducto";
+            numIdProducto.ReadOnly = true;
             numIdProducto.Size = new Size(151, 29);
             numIdProducto.TabIndex = 42;
             // 
@@ -79,6 +80,7 @@
             numCantidadVendida.Location = new Point(238, 173);
             numCantidadVendida.Maximum = new decimal(new int[] { 999999999, 0, 0, 0 });
             numCantidadVendida.Name = "numCantidadVendida";
+            numCantidadVendida.ReadOnly = true;
             numCantidadVendida.Size = new Size(151, 29);
             numCantidadVendida.TabIndex = 44;
             // 
@@ -100,6 +102,7 @@
             numIdVenta.Location = new Point(238, 263);
             numIdVenta.Maximum = new decimal(new int[] { 999999999, 0, 0, 0 });
             numIdVenta.Name = "numIdVenta";
+            numIdVenta.ReadOnly = true;
             numIdVenta.Size = new Size(151, 29);
             numIdVenta.TabIndex = 48;
             // 
@@ -115,9 +118,9 @@
             btnModificar.TabIndex = 49;
             btnModificar.Text = "GUARDAR";
             btnModificar.UseVisualStyleBackColor = false;
-            btnModificar.Click += btnModificar_Click;
+            btnModificar.Click += btnModificar_Click_1;
             // 
-            // frmCrearProductoVendido
+            // frmEliminarProductoVendido
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -130,7 +133,7 @@
             Controls.Add(CantidadVendida);
             Controls.Add(numIdProducto);
             Controls.Add(IdProducto);
-            Name = "frmCrearProductoVendido";
+            Name = "frmEliminarProductoVendido";
             Text = "frmCrearProductoVendido";
             Load += frmEliminarProductoVendido_Load;
             ((System.ComponentModel.ISupportInitialize)numIdProducto).EndInit();

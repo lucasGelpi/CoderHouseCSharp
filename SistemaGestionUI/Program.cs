@@ -13,8 +13,8 @@ namespace SistemaGestionUI
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            Application.Run(new frmUsuarios());
             Application.Run(new frmProductoVendido());
+            Application.Run(new frmUsuarios());
             Application.Run(new frmVentas());
             Application.Run(new frmProductos());
         }

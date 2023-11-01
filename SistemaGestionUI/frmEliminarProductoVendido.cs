@@ -18,24 +18,23 @@ namespace SistemaGestionUI
         {
             InitializeComponent();
         }
+        private ProductoVendido productoVendido;
 
-        private ProductoVendido _productoVendido;
         public frmEliminarProductoVendido(ProductoVendido productoVendido)
         {
             InitializeComponent();
-            _productoVendido = productoVendido;
+            this.productoVendido = productoVendido;
         }
+
         private void frmEliminarProductoVendido_Load(object sender, EventArgs e)
         {
-            this.numIdProducto.Value = _productoVendido.IdProducto;
-            this.numCantidadVendida.Value = _productoVendido.CantidadVendida;
-            this.numIdVenta.Value = _productoVendido.IdVenta;
+            this.numIdProducto.Value = productoVendido.IdProducto;
+            this.numCantidadVendida.Value = productoVendido.CantidadVendida;
+            this.numIdVenta.Value = productoVendido.IdVenta;
         }
 
-        private void btnModificar_Click(object sender, EventArgs e)
+        private void btnModificar_Click_1(object sender, EventArgs e)
         {
-
-            ProductoVendidoData.EliminarProductoVendido(_productoVendido);
             MessageBox.Show("Se grabo Correctamente");
         }
     }

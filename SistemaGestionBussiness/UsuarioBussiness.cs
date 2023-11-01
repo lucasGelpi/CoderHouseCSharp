@@ -20,9 +20,14 @@ namespace SistemaGestionBussiness
             UsuarioData.ModificarUsuario(usuario);
         }
 
-        public static void EliminarUsuario(Usuario usuario)
+        public static void EliminarUsuario(int  Id)
         {
-            UsuarioData.EliminarUsuario(usuario);
+            UsuarioData.EliminarUsuario(Id);
+        }
+
+        public static Usuario IsValidUser(string nombreUsuario, string contraseña)
+        {
+            return UsuarioData.IsValidUser(nombreUsuario, contraseña);
         }
     }
 }

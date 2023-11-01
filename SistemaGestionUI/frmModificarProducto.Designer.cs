@@ -30,7 +30,7 @@
         {
             numStock = new NumericUpDown();
             label1 = new Label();
-            txtUsuario = new TextBox();
+            txtUsuario = new NumericUpDown();
             label6 = new Label();
             txtDescripciones = new TextBox();
             numPrecio = new NumericUpDown();
@@ -192,7 +192,7 @@
 
         private NumericUpDown numStock;
         private Label label1;
-        private TextBox txtUsuario;
+        private NumericUpDown txtUsuario;
         private Label label6;
         private TextBox txtDescripciones;
         private NumericUpDown numPrecio;

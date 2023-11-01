@@ -9,20 +9,5 @@ namespace SistemaGestionBussiness
         {
             return ProductoVendidoData.ListarProductosVendidos();
         }
-
-        public static void AltaProductoVendido(ProductoVendido productoVendido)
-        {
-            ProductoVendidoData.CrearProductoVendido(productoVendido);
-        }
-
-        public static void ModificarProductoVendido(ProductoVendido productoVendido)
-        {
-            ProductoVendidoData.ModificarProductoVendido(productoVendido);
-        }
-
-        public static void EliminarProductoVendido(ProductoVendido productoVendido)
-        {
-            ProductoVendidoData.EliminarProductoVendido(productoVendido);
-        }
     }
 }

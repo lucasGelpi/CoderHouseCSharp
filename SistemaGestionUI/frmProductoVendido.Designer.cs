@@ -29,46 +29,32 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            dataGridView1 = new DataGridView();
-            productoVendidoBindingSource = new BindingSource(components);
-            btnCrear = new Button();
+            dgProductosVendidos = new DataGridView();
             btnEditar = new DataGridViewButtonColumn();
             btnEliminar = new DataGridViewButtonColumn();
             Id = new DataGridViewTextBoxColumn();
             IdProducto = new DataGridViewTextBoxColumn();
             CantidadVendida = new DataGridViewTextBoxColumn();
             IdVenta = new DataGridViewTextBoxColumn();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            productoVendidoBindingSource = new BindingSource(components);
+            btnCrear = new Button();
+            ((System.ComponentModel.ISupportInitialize)dgProductosVendidos).BeginInit();
             ((System.ComponentModel.ISupportInitialize)productoVendidoBindingSource).BeginInit();
             SuspendLayout();
             // 
-            // dataGridView1
+            // dgProductosVendidos
             // 
-            dataGridView1.AllowUserToAddRows = false;
-            dataGridView1.AllowUserToDeleteRows = false;
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { btnEditar, btnEliminar, Id, IdProducto, CantidadVendida, IdVenta });
-            dataGridView1.Location = new Point(12, 81);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.ReadOnly = true;
-            dataGridView1.RowTemplate.Height = 25;
-            dataGridView1.Size = new Size(776, 357);
-            dataGridView1.TabIndex = 1;
-            dataGridView1.CellContentClick += dataGridView1_CellContentClick;
-            // 
-            // productoVendidoBindingSource
-            // 
-            productoVendidoBindingSource.DataSource = typeof(SistemaGestionEntities.ProductoVendido);
-            // 
-            // btnCrear
-            // 
-            btnCrear.Location = new Point(713, 28);
-            btnCrear.Name = "btnCrear";
-            btnCrear.Size = new Size(75, 23);
-            btnCrear.TabIndex = 2;
-            btnCrear.Text = "Crear";
-            btnCrear.UseVisualStyleBackColor = true;
-            btnCrear.Click += btnCrear_Click_1;
+            dgProductosVendidos.AllowUserToAddRows = false;
+            dgProductosVendidos.AllowUserToDeleteRows = false;
+            dgProductosVendidos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgProductosVendidos.Columns.AddRange(new DataGridViewColumn[] { btnEditar, btnEliminar, Id, IdProducto, CantidadVendida, IdVenta });
+            dgProductosVendidos.Location = new Point(12, 81);
+            dgProductosVendidos.Name = "dgProductosVendidos";
+            dgProductosVendidos.ReadOnly = true;
+            dgProductosVendidos.RowTemplate.Height = 25;
+            dgProductosVendidos.Size = new Size(776, 357);
+            dgProductosVendidos.TabIndex = 1;
+            dgProductosVendidos.CellContentClick += dgProductosVendidos_CellContentClick;
             // 
             // btnEditar
             // 
@@ -118,6 +104,20 @@
             IdVenta.Name = "IdVenta";
             IdVenta.ReadOnly = true;
             // 
+            // productoVendidoBindingSource
+            // 
+            productoVendidoBindingSource.DataSource = typeof(SistemaGestionEntities.ProductoVendido);
+            // 
+            // btnCrear
+            // 
+            btnCrear.Location = new Point(713, 28);
+            btnCrear.Name = "btnCrear";
+            btnCrear.Size = new Size(75, 23);
+            btnCrear.TabIndex = 2;
+            btnCrear.Text = "Crear";
+            btnCrear.UseVisualStyleBackColor = true;
+            btnCrear.Click += btnCrear_Click;
+            // 
             // frmProductoVendido
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -125,17 +125,17 @@
             BackColor = SystemColors.ActiveCaptionText;
             ClientSize = new Size(800, 450);
             Controls.Add(btnCrear);
-            Controls.Add(dataGridView1);
+            Controls.Add(dgProductosVendidos);
             Name = "frmProductoVendido";
             Text = "frmProductoVendido";
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgProductosVendidos).EndInit();
             ((System.ComponentModel.ISupportInitialize)productoVendidoBindingSource).EndInit();
             ResumeLayout(false);
         }
 
         #endregion
 
-        private DataGridView dataGridView1;
+        private DataGridView dgProductosVendidos;
         private Button btnCrear;
         private BindingSource productoVendidoBindingSource;
         private DataGridViewButtonColumn btnEditar;

@@ -20,9 +20,15 @@ namespace SistemaGestionUI
 
         private void CargarVentas()
         {
-            List<Venta> lista = VentaData.ListarVentas();
-            dataGridView1.AutoGenerateColumns = false;
-            dataGridView1.DataSource = lista;
+            var db = new SistemaGestionContext();
+
+            // Query
+            var ventas = db.Venta
+                .OrderBy(b => b.Id)
+                .ToList();
+
+            dataGridView1.AutoGenerateColumns = true;
+            dataGridView1.DataSource = ventas;
         }
 
         private void btnCrear_Click(object sender, EventArgs e)
@@ -40,22 +46,24 @@ namespace SistemaGestionUI
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex == -1 || e.ColumnIndex == -1) return;
-
-            int Id = (int)this.dataGridView1.Rows[e.RowIndex].Cells["Id"].Value;
-            Venta venta = VentaData.ListarVentas().Where(x => x.Id == Id).FirstOrDefault();
-
-
             if (this.dataGridView1.Columns[e.ColumnIndex].Name == "btnEditar")
             {
-                frmModificarVenta modificar = new frmModificarVenta(venta);
-                modificar.FormClosed += FrmCrearVenta_FormClosed;
-                modificar.ShowDialog();
+                int codigo = (int)this.dataGridView1.Rows[e.RowIndex].Cells["Id"].Value;
+
+                frmModificarVenta frmModificarVenta = new frmModificarVenta(codigo);
+                frmModificarVenta.FormClosed += new System.Windows.Forms.FormClosedEventHandler(FrmCrearVenta_FormClosed);
+
+                frmModificarVenta.ShowDialog();
             }
-            else if (this.dataGridView1.Columns[e.ColumnIndex].Name == "btnEliminar")
+
+            if (this.dataGridView1.Columns[e.ColumnIndex].Name == "btnEliminar")
             {
-                frmEliminarVenta eliminar = new frmEliminarVenta(venta);
-                eliminar.FormClosed += FrmCrearVenta_FormClosed;
-                eliminar.ShowDialog();
+                int codigo = (int)this.dataGridView1.Rows[e.RowIndex].Cells["Id"].Value;
+
+                frmEliminarVenta frmEliminarVenta = new frmEliminarVenta(codigo);
+                frmEliminarVenta.FormClosed += new System.Windows.Forms.FormClosedEventHandler(FrmCrearVenta_FormClosed);
+
+                frmEliminarVenta.ShowDialog();
             }
         }
     }

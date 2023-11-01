@@ -53,7 +53,6 @@
             txtComentarios.Name = "txtComentarios";
             txtComentarios.Size = new Size(312, 29);
             txtComentarios.TabIndex = 33;
-            txtComentarios.TextChanged += txtComentarios_TextChanged;
             // 
             // label6
             // 
@@ -73,7 +72,6 @@
             txtUsuario.Name = "txtUsuario";
             txtUsuario.Size = new Size(312, 29);
             txtUsuario.TabIndex = 35;
-            txtUsuario.TextChanged += txtUsuario_TextChanged;
             // 
             // btnModificar
             // 

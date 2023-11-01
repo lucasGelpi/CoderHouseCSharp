@@ -28,52 +28,73 @@
         /// </summary>
         private void InitializeComponent()
         {
-            lblComentarios = new Label();
-            txtComentarios = new TextBox();
-            label6 = new Label();
-            txtUsuario = new TextBox();
+            lblIdProducto = new Label();
+            lblCantidadVendida = new Label();
+            lblIdVenta = new Label();
+            numIdProducto = new NumericUpDown();
+            numCantidadVendida = new NumericUpDown();
+            numIdVenta = new NumericUpDown();
             btnModificar = new Button();
+            ((System.ComponentModel.ISupportInitialize)numIdProducto).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)numCantidadVendida).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)numIdVenta).BeginInit();
             SuspendLayout();
             // 
-            // lblComentarios
+            // lblIdProducto
             // 
-            lblComentarios.AutoSize = true;
-            lblComentarios.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            lblComentarios.ForeColor = Color.White;
-            lblComentarios.Location = new Point(281, 67);
-            lblComentarios.Name = "lblComentarios";
-            lblComentarios.Size = new Size(107, 21);
-            lblComentarios.TabIndex = 28;
-            lblComentarios.Text = "Comentarios";
+            lblIdProducto.AutoSize = true;
+            lblIdProducto.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            lblIdProducto.ForeColor = Color.White;
+            lblIdProducto.Location = new Point(281, 67);
+            lblIdProducto.Name = "lblIdProducto";
+            lblIdProducto.Size = new Size(95, 21);
+            lblIdProducto.TabIndex = 28;
+            lblIdProducto.Text = "IdProducto";
+            lblIdProducto.Click += lblComentarios_Click;
             // 
-            // txtComentarios
+            // lblCantidadVendida
             // 
-            txtComentarios.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            txtComentarios.Location = new Point(281, 91);
-            txtComentarios.Name = "txtComentarios";
-            txtComentarios.Size = new Size(312, 29);
-            txtComentarios.TabIndex = 33;
-            //txtComentarios.TextChanged += txtComentarios_TextChanged;
+            lblCantidadVendida.AutoSize = true;
+            lblCantidadVendida.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            lblCantidadVendida.ForeColor = Color.White;
+            lblCantidadVendida.Location = new Point(281, 153);
+            lblCantidadVendida.Name = "lblCantidadVendida";
+            lblCantidadVendida.Size = new Size(146, 21);
+            lblCantidadVendida.TabIndex = 34;
+            lblCantidadVendida.Text = "Cantidad Vendida";
             // 
-            // label6
+            // lblIdVenta
             // 
-            label6.AutoSize = true;
-            label6.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            label6.ForeColor = Color.White;
-            label6.Location = new Point(281, 153);
-            label6.Name = "label6";
-            label6.Size = new Size(88, 21);
-            label6.TabIndex = 34;
-            label6.Text = "Id Usuario";
+            lblIdVenta.AutoSize = true;
+            lblIdVenta.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            lblIdVenta.ForeColor = Color.White;
+            lblIdVenta.Location = new Point(281, 246);
+            lblIdVenta.Name = "lblIdVenta";
+            lblIdVenta.Size = new Size(146, 21);
+            lblIdVenta.TabIndex = 38;
+            lblIdVenta.Text = "Cantidad Vendida";
             // 
-            // txtUsuario
+            // numIdProducto
             // 
-            txtUsuario.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            txtUsuario.Location = new Point(281, 177);
-            txtUsuario.Name = "txtUsuario";
-            txtUsuario.Size = new Size(312, 29);
-            txtUsuario.TabIndex = 35;
-            txtUsuario.TextChanged += txtUsuario_TextChanged;
+            numIdProducto.Location = new Point(281, 91);
+            numIdProducto.Name = "numIdProducto";
+            numIdProducto.Size = new Size(312, 23);
+            numIdProducto.TabIndex = 39;
+            // 
+            // numCantidadVendida
+            // 
+            numCantidadVendida.Location = new Point(281, 177);
+            numCantidadVendida.Name = "numCantidadVendida";
+            numCantidadVendida.Size = new Size(312, 23);
+            numCantidadVendida.TabIndex = 40;
+            // 
+            // numIdVenta
+            // 
+            numIdVenta.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            numIdVenta.Location = new Point(281, 270);
+            numIdVenta.Name = "numIdVenta";
+            numIdVenta.Size = new Size(312, 29);
+            numIdVenta.TabIndex = 37;
             // 
             // btnModificar
             // 
@@ -81,7 +102,7 @@
             btnModificar.FlatStyle = FlatStyle.Popup;
             btnModificar.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             btnModificar.ForeColor = Color.Black;
-            btnModificar.Location = new Point(365, 259);
+            btnModificar.Location = new Point(345, 314);
             btnModificar.Name = "btnModificar";
             btnModificar.Size = new Size(134, 40);
             btnModificar.TabIndex = 36;
@@ -95,30 +116,31 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaptionText;
             ClientSize = new Size(800, 450);
-            Controls.Add(btnModificar);
-            Controls.Add(txtUsuario);
-            Controls.Add(label6);
-            Controls.Add(txtComentarios);
-            Controls.Add(lblComentarios);
+            Controls.Add(lblIdProducto);
+            Controls.Add(lblCantidadVendida);
+            Controls.Add(lblIdVenta);
             Controls.Add(numIdProducto);
             Controls.Add(numCantidadVendida);
             Controls.Add(numIdVenta);
+            Controls.Add(btnModificar);
             Name = "frmModificarProductoVendido";
             Text = "frmModificarProductoVendido";
             Load += frmModificarProductoVendido_Load;
+            ((System.ComponentModel.ISupportInitialize)numIdProducto).EndInit();
+            ((System.ComponentModel.ISupportInitialize)numCantidadVendida).EndInit();
+            ((System.ComponentModel.ISupportInitialize)numIdVenta).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
 
-        private Label lblComentarios;
-        private TextBox txtComentarios;
-        private Label label6;
-        private TextBox txtUsuario;
-        private Button btnModificar;
+        private Label lblIdProducto;
+        private Label lblCantidadVendida;
+        private Label lblIdVenta;
         private NumericUpDown numIdProducto;
         private NumericUpDown numCantidadVendida;
         private NumericUpDown numIdVenta;
+        private Button btnModificar;
     }
 }

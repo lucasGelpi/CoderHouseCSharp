@@ -41,9 +41,7 @@ namespace SistemaGestionUI
         {
             using (var context = new SistemaGestionContext())
             {
-
                 var usuario = context.Usuario.Where(x => x.Id.Equals(this.usuario.Id)).Single();
-
                 context.Remove(usuario);
                 context.SaveChanges();
             }

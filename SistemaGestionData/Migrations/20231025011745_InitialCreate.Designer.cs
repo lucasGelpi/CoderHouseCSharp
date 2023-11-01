@@ -11,7 +11,7 @@ using SistemaGestionData;
 namespace SistemaGestionData.Migrations
 {
     [DbContext(typeof(SistemaGestionContext))]
-    [Migration("20231016222243_InitialCreate")]
+    [Migration("20231025011745_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -19,7 +19,7 @@ namespace SistemaGestionData.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.12")
+                .HasAnnotation("ProductVersion", "7.0.13")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);

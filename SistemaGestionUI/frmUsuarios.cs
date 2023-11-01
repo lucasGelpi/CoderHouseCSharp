@@ -17,6 +17,7 @@ namespace SistemaGestionUI
         {
             InitializeComponent();
         }
+
         private void frmUsuarios_Load(object sender, EventArgs e)
         {
             var db = new SistemaGestionContext();

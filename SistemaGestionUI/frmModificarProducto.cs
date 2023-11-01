@@ -32,7 +32,7 @@ namespace SistemaGestionUI
             _producto.Costo = numCosto.Value;
             _producto.PrecioVenta = numPrecio.Value;
             _producto.Stock = (int)numStock.Value;
-            _producto.IdUsuario = txtUsuario.Text;
+            _producto.IdUsuario = (int)txtUsuario.Value;
 
             ProductoData.ModificarProducto(_producto);
             MessageBox.Show("Se grabo Correctamente");

@@ -14,33 +14,41 @@ namespace SistemaGestionUI
 {
     public partial class frmModificarProductoVendido : Form
     {
-        public frmModificarProductoVendido()
-        {
-            InitializeComponent();
-        }
-
-        private ProductoVendido _productoVendido;
         public frmModificarProductoVendido(ProductoVendido productoVendido)
         {
             InitializeComponent();
-            _productoVendido = productoVendido;
+        }
+        private ProductoVendido productoVendido;
+
+        public frmModificarProductoVendido(int IdProductoVendido)
+        {
+            InitializeComponent();
+
+            this.productoVendido = new ProductoVendido();
+
+            var db = new SistemaGestionContext();
+
+            // Query
+            this.productoVendido = db.ProductoVendido.Where(x => x.Id.Equals(IdProductoVendido)).SingleOrDefault();
+            this.numIdProducto.Value = productoVendido.IdProducto;
+            this.numCantidadVendida.Value = productoVendido.CantidadVendida;
+            this.numIdVenta.Value = productoVendido.IdVenta;
         }
 
         private void btnModificar_Click(object sender, EventArgs e)
         {
-            _productoVendido.IdProducto = (int)numIdProducto.Value;
-            _productoVendido.CantidadVendida = (int)numCantidadVendida.Value;
-            _productoVendido.IdVenta = (int)numIdVenta.Value;
+            productoVendido.IdProducto = (int)numIdProducto.Value;
+            productoVendido.CantidadVendida = (int)numCantidadVendida.Value;
+            productoVendido.IdVenta = (int)numIdVenta.Value;
 
-            ProductoVendidoData.ModificarProductoVendido(_productoVendido);
             MessageBox.Show("Se grabo Correctamente");
         }
 
         private void frmModificarProductoVendido_Load(object sender, EventArgs e)
         {
-            this.numIdProducto.Value = _productoVendido.IdProducto;
-            this.numCantidadVendida.Value = _productoVendido.CantidadVendida;
-            this.numIdVenta.Value = _productoVendido.IdVenta;
+            this.numIdProducto.Value = productoVendido.IdProducto;
+            this.numCantidadVendida.Value = productoVendido.CantidadVendida;
+            this.numIdVenta.Value = productoVendido.IdVenta;
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -54,6 +62,16 @@ namespace SistemaGestionUI
         }
 
         private void txtDescripciones_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblComentarios_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
         {
 
         }

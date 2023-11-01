@@ -30,7 +30,7 @@ namespace SistemaGestionUI
                     Costo = numCosto.Value,
                     PrecioVenta = numPrecio.Value,
                     Stock = (int)numStock.Value,
-                    IdUsuario = txtUsuario.Text,
+                    IdUsuario = (int)txtUsuario.Value,
             };
 
                 context.Producto.Add(producto);

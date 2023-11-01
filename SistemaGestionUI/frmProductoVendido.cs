@@ -1,5 +1,6 @@
 ﻿using SistemaGestionData;
 using SistemaGestionEntities;
+using SistemaGestionUI;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -18,48 +19,48 @@ namespace SistemaGestionUI
         {
             InitializeComponent();
         }
-        private void Form1_Load(object sender, EventArgs e)
+
+        private void frmProductosVendidos_Load(object sender, EventArgs e)
         {
-            CargarProductoVendido();
+            CargarProductosVendidos();
         }
 
-        private void CargarProductoVendido()
+        private void CargarProductosVendidos()
         {
             List<ProductoVendido> lista = ProductoVendidoData.ListarProductosVendidos();
-            dataGridView1.AutoGenerateColumns = false;
-            dataGridView1.DataSource = lista;
+            dgProductosVendidos.AutoGenerateColumns = false;
+            dgProductosVendidos.DataSource = lista;
         }
 
-        private void btnCrear_Click_1(object sender, EventArgs e)
+        private void btnCrear_Click(object sender, EventArgs e)
         {
-            frmCrearProductoVendido frmAltaProductoVendido = new frmCrearProductoVendido();
-            frmAltaProductoVendido.FormClosed += frmCrearProductoVendido_FormClosed;
-            frmAltaProductoVendido.ShowDialog();
+            frmCrearProductoVendido productoVendido = new frmCrearProductoVendido();
+            productoVendido.FormClosed += ProductoVendido_FormClosed;
+            productoVendido.ShowDialog();
         }
 
-        private void frmCrearProductoVendido_FormClosed(object? sender, FormClosedEventArgs e)
+        private void ProductoVendido_FormClosed(object? sender, FormClosedEventArgs e)
         {
-            CargarProductoVendido();
+            CargarProductosVendidos();
         }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void dgProductosVendidos_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex == -1 || e.ColumnIndex == -1) return;
+            int Id = (int)this.dgProductosVendidos.Rows[e.RowIndex].Cells["Id"].Value;
+            ProductoVendido productovendido = ProductoVendidoData.ListarProductosVendidos().Where(x => x.Id == Id).FirstOrDefault();
 
-            int Id = (int)this.dataGridView1.Rows[e.RowIndex].Cells["Id"].Value;
-            ProductoVendido productoVendido = ProductoVendidoData.ListarProductosVendidos().Where(x => x.Id == Id).FirstOrDefault();
 
-
-            if (this.dataGridView1.Columns[e.ColumnIndex].Name == "btnEditar")
+            if (this.dgProductosVendidos.Columns[e.ColumnIndex].Name == "btnEditar")
             {
-                frmModificarProductoVendido modificar = new frmModificarProductoVendido(productoVendido);
-                modificar.FormClosed += frmCrearProductoVendido_FormClosed;
+                frmModificarProductoVendido modificar = new frmModificarProductoVendido(productovendido);
+                modificar.FormClosed += ProductoVendido_FormClosed;
                 modificar.ShowDialog();
             }
-            else if (this.dataGridView1.Columns[e.ColumnIndex].Name == "btnEliminar")
+            else if (this.dgProductosVendidos.Columns[e.ColumnIndex].Name == "btnEliminar")
             {
-                frmEliminarProductoVendido eliminar = new frmEliminarProductoVendido(productoVendido);
-                eliminar.FormClosed += frmCrearProductoVendido_FormClosed;
+                frmEliminarProductoVendido eliminar = new frmEliminarProductoVendido(productovendido);
+                eliminar.FormClosed += ProductoVendido_FormClosed;
                 eliminar.ShowDialog();
             }
         }

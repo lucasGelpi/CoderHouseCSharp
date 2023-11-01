@@ -14,27 +14,40 @@ namespace SistemaGestionUI
 {
     public partial class frmEliminarVenta : Form
     {
+        private Venta venta;
+
+        public frmEliminarVenta(int IDVenta)
+        {
+            InitializeComponent();
+
+            this.venta = new Venta();
+
+            var db = new SistemaGestionContext();
+
+            // Query
+            this.venta = db.Venta.Where(x => x.Id.Equals(IDVenta)).SingleOrDefault();
+            this.txtUsuario.Text = venta.IdUsuario.ToString();
+            this.txtComentarios.Text = venta.Comentarios;
+        }
+
         public frmEliminarVenta()
         {
             InitializeComponent();
         }
-        private Venta _venta;
-        public frmEliminarVenta(Venta venta)
-        {
-            InitializeComponent();
-            _venta = venta;
-        }
+
         private void frmEliminarVenta_Load(object sender, EventArgs e)
         {
-            this.txtUsuario.Text = _venta.IdUsuario.ToString();
-            this.txtComentarios.Text = _venta.Comentarios;
+
         }
 
         private void btnModificar_Click(object sender, EventArgs e)
         {
-
-            VentaData.EliminarVenta(_venta);
-            MessageBox.Show("Se grabo Correctamente");
+            using (var context = new SistemaGestionContext())
+            {
+                var venta = context.Venta.Where(x => x.Id.Equals(this.venta.Id)).Single();
+                context.Remove(venta);
+                context.SaveChanges();
+            }
         }
     }
 }

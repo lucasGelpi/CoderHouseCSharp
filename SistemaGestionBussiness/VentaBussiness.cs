@@ -1,5 +1,7 @@
-﻿using SistemaGestionData;
+﻿using Microsoft.Data.SqlClient;
+using SistemaGestionData;
 using SistemaGestionEntities;
+using System.Data;
 
 namespace SistemaGestionBussiness
 {
@@ -10,19 +12,19 @@ namespace SistemaGestionBussiness
             return VentaData.ListarVentas();
         }
 
-        public static void AltaVenta(Venta venta)
+        public static void CargarVenta(long idUsuario, List<ProductoVendido> listProductosVendidos)
         {
-            VentaData.CrearVenta(venta);
+            VentaData.CargarVenta(idUsuario, listProductosVendidos);
         }
 
-        public static void ModificarVenta(Venta venta)
+        public static void AltaVenta(int ventaId, string nuevoComentario)
         {
-            VentaData.ModificarVenta(venta);
+            VentaData.AltaVenta(ventaId, nuevoComentario);
         }
 
-        public static void EliminarVenta(Venta venta)
+        public static void EliminarVenta(int Id)
         {
-            VentaData.EliminarVenta(venta);
+            VentaData.EliminarVenta(Id);
         }
     }
 }
